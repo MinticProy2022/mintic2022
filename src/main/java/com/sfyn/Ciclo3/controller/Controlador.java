@@ -15,11 +15,11 @@ public class Controlador {
     @Autowired
     EmpresaService empresaService;
 
-    @GetMapping({"/Empresas", "/VerEmpresas"})
+    @GetMapping({"/", "/verEmpresas"})
     public String viewEmpresas(Model model) {
         List<Empresa>listaEmpresas=empresaService.getAllEmpresas();
-        model.addAttribute("emplist",listaEmpresas);
-        return "verEmpresas";    //este es el nombre para ver en html
+     model.addAttribute("emplist", listaEmpresas);
+        return "mostrarEmpresas";    //este es el nombre para ver en html
 
     }
 
