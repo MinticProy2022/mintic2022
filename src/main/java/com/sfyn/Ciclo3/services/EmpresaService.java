@@ -10,20 +10,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class EmpresaServices {
+public class EmpresaService {
     @Autowired  //conectamos esta clase con el repositorio de empresa
 
     EmpresaRepository empresaRepository;  //creamos un objeto tipo empresaRepositorio para poder usar los metodos que dicha clase hereda
 
     //Metodo que retornara la lista de empresas usando metodos heredados del jpaRepository
-    public List<Empresa> getAllEmpresas(){
-        List<Empresa>empresaList =new ArrayList<>();
+    public List<Empresa> getAllEmpresas() {
+        List<Empresa> empresaList = new ArrayList<>();
         empresaRepository.findAll().forEach(empresa -> empresaList.add(empresa)); //recorremos la interable que regresa el metodo FindAll del jpa y los guardamos en la lista
         return empresaList;
     }
 
     //metodo que trae un objeto de tipo empresa cuando cuento con el id de la misma
-    public Empresa getEmpresaById(Integer id){
+    public Empresa getEmpresaById(Integer id) {
         return empresaRepository.findById(id).get();
     }
 
@@ -35,15 +35,21 @@ public class EmpresaServices {
         }
         return false;
 
+    }
+
+    //metodo para eliminar empresas registradas teniendo el id
+   public boolean deleteEmpresa(Integer id){
+        empresaRepository.findById(id);
+        if (getEmpresaById(id)!=null){
+            return false;
         }
-     //metodo para eliminar empresas teniendo el id
-
-   
-
-
+        return true;
+   }
 
 
     }
+
+
 
 
 
