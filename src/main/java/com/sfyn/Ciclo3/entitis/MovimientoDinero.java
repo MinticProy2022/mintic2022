@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class MovimientoDinero {
     @Id //este es el primary key y es autogenerado
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int in;
+    private int id;
     private long monto;
     private  String concepto;
     @ManyToOne
@@ -31,12 +31,12 @@ public class MovimientoDinero {
     //***********set and get**************************************************************
 
 
-    public int getIn() {
-        return in;
+    public int getId() {
+        return id;
     }
 
-    public void setIn(int in) {
-        this.in = in;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public long getMonto() {
