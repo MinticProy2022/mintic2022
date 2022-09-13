@@ -38,7 +38,7 @@
         <!--aqui llenamos la tabla-->
         <!--en nuestro controlador, creamos en viewEmpresa un modelo con un atributo llamado emplist dondeesta guarda la lista de todas las empresas-->
 
-        <tr th:each="empresa: ${emplist}">
+       <br> <tr th:each="empresa: ${emplist}">
             <td th:text="${empresa.id}"></td>
             <td th:text="${empresa.nombre}"></td>
             <td th:text="${empresa.direccion}"></td>
