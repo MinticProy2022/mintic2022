@@ -29,6 +29,12 @@
         <!--en nuestro controlador, creamos en viewEmpresa un modelo con un atributo llamado emplist dondeesta guarda la lista de todas las empresas-->
 
         <tr th:each="empresa: ${emplist}">
+            <td th:text="${empresa.id}"></td>
+            <td th:text="${empresa.nombre}"></td>
+            <td th:text="${empresa.direccion}"></td>
+            <td th:text="${empresa.telefono}"></td>
+            <td th:text="${empresa.NIT}"></td>
+            <td><button type="button" class="btn btn-warning"><a th:href="@{/editarEmpresa}">Editar</a></button></td>
 
 
         </tr>
