@@ -1,8 +1,8 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Bootstrap Theme Simply Me</title>
+    <title>Lista Empresas</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -23,6 +23,13 @@
             <th>NIT</th>
            <th>Editar</th>
             <th>Eliminar</th>
+
+        </tr>
+        <!--aqui llenamos la tabla-->
+        <!--en nuestro controlador, creamos en viewEmpresa un modelo con un atributo llamado emplist dondeesta guarda la lista de todas las empresas-->
+
+        <tr th:each="empresa: ${emplist}">
+
 
         </tr>
 
