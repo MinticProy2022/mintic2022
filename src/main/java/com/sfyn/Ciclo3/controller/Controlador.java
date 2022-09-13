@@ -22,6 +22,13 @@ public class Controlador {
         return "mostrarEmpresas";    //este es el nombre para ver en html
 
     }
+    @GetMapping("/AgregarEmpresa")
+    public  String nuevaEmpresa(Model model){
+        Empresa emp= new Empresa();
+        model.addAttribute("emp",emp);
+        return "agregarEmpresa";
+
+    }
 
 }
 
