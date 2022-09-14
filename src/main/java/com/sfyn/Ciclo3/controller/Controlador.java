@@ -38,10 +38,10 @@ public class Controlador {
     public String guardarEmpresa(Empresa emp, RedirectAttributes redirectAttributes) {
         if (empresaService.saveOrUpdateEmpresa(emp) == true) {
             redirectAttributes.addFlashAttribute("mensaje", "saveOK");
-            return "redirect:/VerEmpresas";
+            return "redirect:/verEmpresas";
         }
         redirectAttributes.addFlashAttribute("mensaje", "saveError");
-        return "redirect:/AgregarEmpresa";
+        return "redirect:/mostrarEmpresa";
     }
 
 }
