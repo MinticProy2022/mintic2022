@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class EmpresaService {
+public class  EmpresaService {
     @Autowired  //conectamos esta clase con el repositorio de empresa
 
     EmpresaRepository empresaRepository;  //creamos un objeto tipo empresaRepositorio para poder usar los metodos que dicha clase hereda
@@ -38,13 +38,18 @@ public class EmpresaService {
     }
 
     //metodo para eliminar empresas registradas teniendo el id
-   public boolean deleteEmpresa(Integer id){
-        empresaRepository.findById(id);
-        if (getEmpresaById(id)!=null){
-            return false;
+    //Metodo para eliminar empresas registradas teniendo el id
+    public boolean deleteEmpresa(Integer id){
+        empresaRepository.deleteById(id);  //Eliminar
+
+        if (empresaRepository.findById(id)!=null){  //Verificacion del servicio eliminacion
+            return true;
         }
-        return true;
-   }
+        return false;
+    }
+
+
+
 
 
     }

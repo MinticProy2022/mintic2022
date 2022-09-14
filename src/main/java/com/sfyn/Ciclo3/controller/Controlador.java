@@ -54,6 +54,9 @@ public class Controlador {
         model.addAttribute("mensaje", mensaje);
         return "editarEmpresa";
     }
+
+    //aqui se activa el boton actualizar
+
     @PostMapping("/ActualizarEmpresa")
     public String updateEmpresa (@ModelAttribute("emp") Empresa emp){
         if(empresaService.saveOrUpdateEmpresa(emp)==true){
@@ -61,6 +64,15 @@ public class Controlador {
             return "redirect:/verEmpresas";
         }
         return "redirect:/EditarEmpresa";
+    }
+    @GetMapping("/EliminarEmpresa/{id}")
+    public String eliminarEmpresa(@PathVariable Integer id, RedirectAttributes redirectAttributes){
+        if (empresaService.deleteEmpresa(id)==true){
+            redirectAttributes.addFlashAttribute("mensaje","deleteOK");
+            return "redirect:/verEmpresas";
+        }
+        redirectAttributes.addFlashAttribute("mensaje", "deleteError");
+        return "redirect:/verEmpresas";
     }
 
 
