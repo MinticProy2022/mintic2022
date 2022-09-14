@@ -21,25 +21,20 @@
 </head>
 <body>
 
-<div class="container-fluid">
+<div class="container">
     <h1>Agregue aqui los datos de empresa</h1>
-    
-    <form th:action="@{/GuardarEmpresa}" th:objecto="${emp}"method="post">
+    <!--Crear formulario para llenar los datos de la empresa y guardarlo en el objeto emp -->
+    <form th:action="@{/GuardarEmpresa}" th:object="${emp}" method="post">
+        <!--Campo para nombre-->
         <div class="row">
             <div class="form-group col-md-12">
                 <label class="col-md-3" for="nombre">Nombre de la Empresa:</label>
-                <div class="col-md-6"><input type="text" class="form-control"id="nombre"></div>
-
-                <input type="text" class="form-control" id="nombre">
+                <div class="col-md-6"><input type="text" th:field="*{nombre}" class="form-control" id="nombre" required="required"></div>
             </div>
-
-
         </div>
-
-
-    </form>
-
 </div>
+
+
 
 </body>
 </html>
