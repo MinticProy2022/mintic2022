@@ -46,7 +46,7 @@ public class Controlador {
         return "redirect:/mostrarEmpresa"; //aqui hace retorno a la lista de empresas pasando por el html
     }
 
-    @GetMapping("/EditarEmpresa/{}")
+    @GetMapping("/EditarEmpresa/{id}")
     public String editarEmpresa(Model model, @PathVariable Integer id, @ModelAttribute("mensaje") String mensaje){
         Empresa emp=empresaService.getEmpresaById(id);
         //Creamos un atributo para el modelo, que se llame igualmente emp y es el que ira al html para llenar o alimentar campos
