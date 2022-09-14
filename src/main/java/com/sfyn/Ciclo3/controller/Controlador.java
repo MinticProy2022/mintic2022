@@ -54,6 +54,14 @@ public class Controlador {
         model.addAttribute("mensaje", mensaje);
         return "editarEmpresa";
     }
+    @PostMapping("/ActualizarEmpresa")
+    public String updateEmpresa (@ModelAttribute("emp") Empresa emp){
+        if(empresaService.saveOrUpdateEmpresa(emp)==true){
+
+            return "redirect:/verEmpresas";
+        }
+        return "redirect:/EditarEmpresa";
+    }
 
 
 
