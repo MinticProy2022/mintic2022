@@ -64,7 +64,9 @@
             <td th:text="${empleado.nombre}"></td>
             <td th:text="${empleado.correo}"></td>
             <td th:text="${empleado.empresa.nombre}"></td>
-            <td th:text="${empleado.rol}"></td>
+            <!-- <td th:text="${empleado.rol}"></td> -->
+            <td th:if="${empleado.rol=='1'}">Admin</td>
+            <td th:if="${empleado.rol=='2'}">Operario</td>
 
     <!--boton para editar y eliminar las empleado-->
     <!--llaman a sericios de empleados,editar empleado se alimenta de id de empleado, eliminar empleado
