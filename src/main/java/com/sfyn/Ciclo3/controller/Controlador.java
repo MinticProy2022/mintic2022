@@ -98,11 +98,12 @@ public class Controlador {
     @GetMapping({ "/verEmpleados"})
     public String viewEmpleados(Model model, @ModelAttribute("mensaje")String mensaje) {
         List<Empleado> listaEmpleados = empleadoService.getAllEmpleado();
-        model.addAttribute("emplist", listaEmpleados);
+        model.addAttribute("emplelist", listaEmpleados);
         model.addAttribute("mensaje", mensaje);
         return "mostrarEmpleados";    //aqui llamamo al html el que esta en templates llamado mostrarEmpleado
 
     }
+    //***********************agregar empleado************************************
     @GetMapping("/AgregarEmpleado") //esta es la ruta con la que se hace el llamado de este bloque en el host
     public String nuevoEmpleado(Model model,@ModelAttribute("mensaje")String mensaje) {
         Empleado emple = new Empleado();
@@ -113,6 +114,17 @@ public class Controlador {
 
         return "agregarEmpleado";//aqui llamamos a el html AgregarEmpleado
 
+    }
+//*****************Guardar empleado***************************
+    @PostMapping("/GuardarEmpleado")
+    public String guardarEmpleado(Empleado emple, RedirectAttributes redirectAttributes) {
+        if (empleadoService.saveOrUpdateEmpleado(emple) == true) {
+
+            redirectAttributes.addFlashAttribute("mensaje", "saveOK");
+            return "redirect:/verEmpleados";
+        }
+        redirectAttributes.addFlashAttribute("mensaje", "saveError");
+        return "redirect:/AgregarEmpleado"; //aqui hace retorno a la lista de empresas pasando por el html
     }
 
 

@@ -1,6 +1,7 @@
 package com.sfyn.Ciclo3.services;
 
 import com.sfyn.Ciclo3.entitis.Empleado;
+import com.sfyn.Ciclo3.entitis.Empresa;
 import com.sfyn.Ciclo3.repositorio.EmpleadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,9 +35,13 @@ public class EmpleadoService {
     }
 
     //Metodo para guardar o actualizar registros en Empleados
-    public Empleado saveOrUpdateEmpleado(Empleado empleado){
+    public boolean saveOrUpdateEmpleado(Empleado empl) {
+        Empleado emple = empleadoRepository.save(empl);
+        if (empleadoRepository.findById(emple.getId()) != null) {
+            return true;
+        }
+        return false;
 
-        return empleadoRepository.save(empleado);
     }
 
     //Metodo para eliminar un registro de Empleado por Id

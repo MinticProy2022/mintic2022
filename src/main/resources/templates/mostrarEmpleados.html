@@ -57,13 +57,13 @@
 
         </tr>
         <!--aqui llenamos la tabla-->
-        <!--en nuestro controlador, creamos en viewEmpresa un modelo con un atributo llamado emplelist dondeesta guarda la lista de todas los Empleados-->
+        <!--en nuestro controlador, creamos en viewEmpleado un modelo con un atributo llamado emplelist dondeesta guarda la lista de todas los Empleados-->
 
        <br> <tr th:each="empleado: ${emplelist}">
             <td th:text="${empleado.id}"></td>
             <td th:text="${empleado.nombre}"></td>
             <td th:text="${empleado.correo}"></td>
-            <td th:text="${empleado.empresa}"></td>
+            <td th:text="${empleado.empresa.nombre}"></td>
             <td th:text="${empleado.rol}"></td>
 
     <!--boton para editar y eliminar las empleado-->
