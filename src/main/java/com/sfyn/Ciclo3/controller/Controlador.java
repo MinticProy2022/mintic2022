@@ -1,6 +1,8 @@
 package com.sfyn.Ciclo3.controller;
 
+import com.sfyn.Ciclo3.entitis.Empleado;
 import com.sfyn.Ciclo3.entitis.Empresa;
+import com.sfyn.Ciclo3.services.EmpleadoService;
 import com.sfyn.Ciclo3.services.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,6 +20,10 @@ import java.util.List;
 public class Controlador {
     @Autowired
     EmpresaService empresaService;
+    @Autowired
+    EmpleadoService empleadoService;
+
+
 //***************************************************************
     //***********controlador Empresa**********************************
     @GetMapping({"/", "/verEmpresas"})
@@ -89,5 +95,16 @@ public class Controlador {
 
     //***************************************************************************
     //**************controlador Empleado**************************************
+    @GetMapping({ "/verEmpleados"})
+    public String viewEmpleados(Model model, @ModelAttribute("mensaje")String mensaje) {
+        List<Empleado> listaEmpleados = empleadoService.getAllEmpleado();
+        model.addAttribute("emplist", listaEmpleados);
+        model.addAttribute("mensaje", mensaje);
+        return "mostrarEmpleados";    //aqui llamamo al html el que esta en templates llamado mostrarEmpleado
+
+    }
+
+
+
 
 }

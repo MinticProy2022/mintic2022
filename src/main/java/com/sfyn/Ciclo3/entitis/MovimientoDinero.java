@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Table(name="MovimientoDinero")
 public class MovimientoDinero {
     @Id //este es el primary key y es autogenerado
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private long monto;
     private  String concepto;
