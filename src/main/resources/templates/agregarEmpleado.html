@@ -72,7 +72,12 @@
             <div class="form-group col-md-12">
                 <label class="col-md-3" for="rol">Rol del  empleado:</label>
                 <div class="col-md-6">
-                    <input type="text" th:field="*{rol}" class="form-control" id="rol" required="required"></div>
+                    <select th:field="*{rol}" class="form-control" id="rol" required="required">
+                        <option th:value=1>Admin</option>
+                        <option th:value=2>Operario</option>
+
+                    </select>
+                </div>
             </div>
         </div>
 
