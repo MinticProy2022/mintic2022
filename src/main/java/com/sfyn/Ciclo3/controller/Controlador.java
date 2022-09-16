@@ -103,6 +103,17 @@ public class Controlador {
         return "mostrarEmpleados";    //aqui llamamo al html el que esta en templates llamado mostrarEmpleado
 
     }
+    @GetMapping("/AgregarEmpleado") //esta es la ruta con la que se hace el llamado de este bloque en el host
+    public String nuevoEmpleado(Model model,@ModelAttribute("mensaje")String mensaje) {
+        Empleado emple = new Empleado();
+        model.addAttribute("emple", emple);
+        model.addAttribute("mensaje", mensaje);
+        List<Empresa> listaEmpresa= empresaService.getAllEmpresas();
+        model.addAttribute("emprelist",listaEmpresa);
+
+        return "agregarEmpleado";//aqui llamamos a el html AgregarEmpleado
+
+    }
 
 
 
