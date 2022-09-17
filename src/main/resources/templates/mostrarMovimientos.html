@@ -26,6 +26,20 @@
     <button type="button" class="btn btn-danger" style="float:right"><a th:href="@{/logout}">Cerrar Sesión</a></button>
 
     <h1> Lista de Movimientos</h1>
+    <!-- ********************************* **************************************************************************-->
+    <!-- **************************Grupo de botones Justificados**************************************************** -->
+
+    <div class="container">
+        <br><br>
+
+        <div class="btn-group btn-group-justified">
+            <a href="AgregarMovimiento" class="btn btn-success">Agregar Nueva Movimiento</a>
+            <a href="verEmpresas" class="btn btn-primary">Ver Lista de Empresas</a>
+            <a href="verEmpleados" class="btn btn-success">Ver Lista de Empleados</a>
+        </div>
+    </div>
+    <!-- *********************************************************************************************************** -->
+    <!-- *********************************************************************************************************** -->
     <!--Dibujamos la tabla-->
     <br><table class="table table-bordered">
     <tr>
@@ -77,17 +91,7 @@
                 <p th:text="${#numbers.formatCurrency(SumaMontos)}" class="form-control" id="SumaMontos"></p>
             </div>
         </div>
-    </div>
 
-    <!-- vamos a crear un boton que sirva para agregar nuevos movimientos -->
-    <button type="button" class="btn btn-info"><a th:href="@{/AgregarMovimiento}">Agregar Nuevo Movimiento</a></button>
-    <br><br>
-    <!-- boton que me lleva a la lista de empresas -->
-    <button type="button" class="btn btn-primary"><a th:href="@{/verEmpresas}">Ver lista de Empresas</a></button>
-    <br><br>
-    <!-- boton que me lleva a la lista de empleados -->
-    <button type="button" class="btn btn-primary"><a th:href="@{/verEmpleados}">Ver lista de Empleados</a></button>
-</div>
 
 <script th:inline="javascript">
     window.onload=function(){
