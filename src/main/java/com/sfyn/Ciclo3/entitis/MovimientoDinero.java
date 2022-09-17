@@ -1,20 +1,24 @@
 package com.sfyn.Ciclo3.entitis;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
-@Table(name="MovimientoDinero")
+@Table(name="Movimientos")
 public class MovimientoDinero {
     @Id //este es el primary key y es autogenerado
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private long monto;
-    private  String concepto;
+    private String concepto;
     @ManyToOne
     @JoinColumn(name = "empleado_id")
     private Empleado usuario;    //en lugar de usuario , se crea un odjeto de la clase empleado
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date fecha;
 
 
     //***********constructor*************************************************************
@@ -22,14 +26,13 @@ public class MovimientoDinero {
     public MovimientoDinero() {
     }
 
-    public MovimientoDinero(long monto, String concepto, Empleado empleado) {
+    public MovimientoDinero(int id, long monto, String concepto, Empleado usuario, Date fecha) {
+        this.id = id;
         this.monto = monto;
         this.concepto = concepto;
-        this.usuario = empleado;
+        this.usuario = usuario;
+        this.fecha = fecha;
     }
-
-    //***********set and get**************************************************************
-
 
     public int getId() {
         return id;
@@ -55,12 +58,19 @@ public class MovimientoDinero {
         this.concepto = concepto;
     }
 
-    //*********get y set creados automaticamente cuando se genero la relacion  @ManyToOne
     public Empleado getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Empleado empleado) {
-        this.usuario = empleado;
+    public void setUsuario(Empleado usuario) {
+        this.usuario = usuario;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 }
