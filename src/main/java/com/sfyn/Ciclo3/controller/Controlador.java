@@ -273,7 +273,12 @@ public class Controlador {
         redirectAttributes.addFlashAttribute("mensaje", "deleteError");
         return "redirect:/verEmpleados";
     }
-
+    @GetMapping("/Empresa/{id}/Empleados")
+public String verEmpleadosPorEmpresa(@PathVariable("id")Integer id, Model model){
+        List<Empleado>listaEmpleados=empleadoService.obtenerPorEmpresa(id);
+        model.addAttribute("emplelist",listaEmpleados);
+        return "verEmpleados";
+    }
 
 
     //Metodo para encriptar contraseñas

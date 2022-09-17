@@ -28,8 +28,9 @@ public class EmpleadoService {
 
         return empleadoRepository.findById(id);
     }
+    //**************************************************************************************************
+   //**************************Metodo para buscar empleados por empresa**********************************
 
-    //Metodo para buscar empleados por empresa
     public ArrayList<Empleado> obtenerPorEmpresa(Integer id){
         return empleadoRepository.findByEmpresa(id);
     }
@@ -43,6 +44,9 @@ public class EmpleadoService {
         return false;
 
     }
+
+    //*************************************************************************************************
+    //*********************** Metodo para eliminar un registro de Empleado por Id************************
 
     //Metodo para eliminar un registro de Empleado por Id
     public boolean deleteEmpleado(Integer id){
