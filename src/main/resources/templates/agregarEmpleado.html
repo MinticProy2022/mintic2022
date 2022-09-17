@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Agregar nuevo Empleado - Ciclo3</title>
     <meta charset="utf-8">
@@ -21,13 +21,12 @@
 <body>
 
 <div class="container">
+    <p th:inline="text" class="text-right">User: [[${#httpServletRequest.remoteUser}]]</p>
+    <button type="button" class="btn btn-danger" style="float:right"><a th:href="@{/logout}">Cerrar Sesión</a></button>
     <h1> Agregue aqui los datos del Empleado</h1>
     <br>
-    <!--Crear formulario para llenar los datos del empleado y guardarlo en el objeto emple -->
-    <!-- aqu con la @{} se llama al controlador se alimenta de emple-->
-
-    <form th:action="@{/GuardarEmpleado}" th:object="${emple}" method="post">
-
+    <!--Crear formulario para llenar los datos de la empresa y guardarlo en el objeto emp -->
+    <form th:action="@{/GuardarEmpleado}" th:object="${empl}" method="post">
         <!--Campo para nombre-->
         <div class="row">
             <div class="form-group col-md-12">
@@ -40,42 +39,54 @@
         <!--Campo para correo-->
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3" for="correo">Correo del Empleado:</label>
+                <label class="col-md-3" for="correo">Correo del empleado:</label>
                 <div class="col-md-6">
                     <input type="email" th:field="*{correo}" class="form-control" id="correo" required="required"></div>
             </div>
         </div>
 
-        <!--Campo para Empresas-->
+        <!--Campo para empresa-->
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3" for="empresa">Empresa a la que pertenece:</label>
+                <label class="col-md-3" for="empresa">Empresa a la que pertence:</label>
                 <div class="col-md-6">
                     <select th:field="*{empresa}" class="form-control" id="empresa" required="required">
-
-                        <!--aqui interamos con for each y por cada objeto que encuentre en emprelist asumaque que es una empresa
-                         y el texto que aparezca en en pantalla es el que encuentra en nombre pero el valor que va a guardar
-                           es el id parte visible es nombre pero el que guarda es el id-->
-
-                        <option th:each="empresa:${emprelist}" th:text="${empresa.nombre}"th:value="${empresa.id}">
-
-                        </option>
-
+                        <option th:each="empresa : ${emprelist}" th:text="${empresa.nombre}" th:value="${empresa.id}"></option>
                     </select>
                 </div>
-
             </div>
         </div>
 
-        <!--Campo para rol-->
+        <!--Campo para Rol-->
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3" for="rol">Rol del  empleado:</label>
+                <label class="col-md-3" for="rol">Rol del empleado:</label>
                 <div class="col-md-6">
                     <select th:field="*{rol}" class="form-control" id="rol" required="required">
-                        <option th:value=1>Admin</option>
-                        <option th:value=2>Operario</option>
+                        <option th:value='ROLE_ADMIN'>Admin</option>
+                        <option th:value='ROLE_USER'>Operario</option>
+                    </select>
+                </div>
+            </div>
+        </div>
 
+        <!--Campo para contraseña-->
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3" for="password">Contraseña del empleado:</label>
+                <div class="col-md-6">
+                    <input type="password" th:field="*{password}" class="form-control" id="password" required="required"></div>
+            </div>
+        </div>
+
+        <!--Campo para Estado-->
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3" for="estado">Estado actual del empleado:</label>
+                <div class="col-md-6">
+                    <select th:field="*{estado}" class="form-control" id="estado" required="required">
+                        <option th:value=1>Activo</option>
+                        <option th:value=0>Inactivo</option>
                     </select>
                 </div>
             </div>
@@ -83,10 +94,9 @@
 
 
         <!--Boton para enviar todo y ejecutar accion -->
-
         <div class="row">
             <div class="col-md-2">
-                <button class="btn btn-success">Registrar Empleado</button>
+                <button class="btn btn-success">Registrar empleado</button>
             </div>
         </div>
 
@@ -98,4 +108,3 @@
 </div>
 </body>
 </html>
-

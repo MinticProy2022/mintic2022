@@ -48,6 +48,7 @@
             <th>Direccion</th>
             <th>Telefono</th>
             <th>NIT</th>
+            <th>Movimientos</th>
            <th>Editar</th>
             <th>Eliminar</th>
 
@@ -63,7 +64,7 @@
             <td th:text="${empresa.NIT}"></td>
 
     <!--boton para editar y eliminar las empresas-->
-
+    <td><button type="button" class="btn btn-primary"><a th:href="@{/Empresa/{id}/Movimientos (id=${empresa.id})}">Ver</a></button></td>
     <td><button type="button" class="btn btn-warning"><a th:href="@{/EditarEmpresa/{id}(id=${empresa.id})}">Editar</a></button></td>
     <td><button type="button" class="btn btn-danger"><a th:href="@{/EliminarEmpresa/{id}(id=${empresa.id})}">Eliminar</a></button></td>
 

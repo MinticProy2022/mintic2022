@@ -117,7 +117,7 @@ public class Controlador {
     @GetMapping("/AgregarEmpleado") //esta es la ruta con la que se hace el llamado de este bloque en el host
     public String nuevoEmpleado(Model model,@ModelAttribute("mensaje")String mensaje) {
         Empleado emple = new Empleado();
-        model.addAttribute("emple", emple);
+        model.addAttribute("empl", emple);
         model.addAttribute("mensaje", mensaje);
         List<Empresa> listaEmpresa= empresaService.getAllEmpresas();
         model.addAttribute("emprelist",listaEmpresa);
@@ -165,6 +165,18 @@ public class Controlador {
         return "redirect:/EditarEmpleado/"+empl.getId();
 
     }
+    //*********************Eliminar************************
+    @GetMapping("/EliminarEmpleado/{id}")
+    public String eliminarEmpleado(@PathVariable Integer id, RedirectAttributes redirectAttributes){
+        if (empleadoService.deleteEmpleado(id)){
+            redirectAttributes.addFlashAttribute("mensaje","deleteOK");
+            return "redirect:/verEmpleados";
+        }
+        redirectAttributes.addFlashAttribute("mensaje", "deleteError");
+        return "redirect:/verEmpleados";
+    }
+
+
 
     //Metodo para encriptar contraseñas
     @Bean
