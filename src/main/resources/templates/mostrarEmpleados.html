@@ -72,7 +72,7 @@
     <!--llaman a sericios de empleados,editar empleado se alimenta de id de empleado, eliminar empleado
     se alimenta de id empleado
     -->
-    <td><button type="button" class="btn btn-warning"><a th:href="@{/EditarEmpleados/{id}(id=${empleado.id})}">Editar</a></button></td>
+    <td><button type="button" class="btn btn-warning"><a th:href="@{/EditarEmpleado/{id}(id=${empleado.id})}">Editar</a></button></td>
     <td><button type="button" class="btn btn-danger"><a th:href="@{/EliminarEmpleados/{id}(id=${empleado.id})}">Eliminar</a></button></td>
 
         </tr>

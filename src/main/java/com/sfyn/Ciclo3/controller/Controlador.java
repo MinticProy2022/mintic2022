@@ -12,6 +12,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
+
 import java.util.List;
 
 //@RestController
@@ -127,7 +137,38 @@ public class Controlador {
         return "redirect:/AgregarEmpleado"; //aqui hace retorno a la lista de empresas pasando por el html
     }
 
+//**************************Editar*******************************************************
+    @GetMapping("/EditarEmpleado/{id}")
+    public String editarEmpleado(Model model, @PathVariable Integer id, @ModelAttribute("mensaje") String mensaje){
+        Empleado empl=empleadoService.getEmpleadoById(id).get();
+        //Creamos un atributo para el modelo, que se llame igualmente empl y es el que ira al html para llenar o alimentar campos
+        model.addAttribute("empl",empl);
+        model.addAttribute("mensaje", mensaje);
+        List<Empresa> listaEmpresas= empresaService.getAllEmpresas();
+        model.addAttribute("emprelist",listaEmpresas);
+        return "editarEmpleado";
+    }
 
+    @PostMapping("/ActualizarEmpleado")
+    public String updateEmpleado(@ModelAttribute("empl") Empleado empl, RedirectAttributes redirectAttributes){
+        Integer id=empl.getId(); //Sacamos el id del objeto empl
+        String Oldpass=empleadoService.getEmpleadoById(id).get().getPassword(); //Con ese id consultamos la contraseña que ya esta en la base
+        if(!empl.getPassword().equals(Oldpass)){
+            String passEncriptada=passwordEncoder().encode(empl.getPassword());
+            empl.setPassword(passEncriptada);
+        }
+        if(empleadoService.saveOrUpdateEmpleado(empl)){
+            redirectAttributes.addFlashAttribute("mensaje","updateOK");
+            return "redirect:/verEmpleados";
+        }
+        redirectAttributes.addFlashAttribute("mensaje","updateError");
+        return "redirect:/EditarEmpleado/"+empl.getId();
 
+    }
 
+    //Metodo para encriptar contraseñas
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 }
