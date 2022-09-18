@@ -15,15 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Controller;
+
 
 import java.util.List;
 
@@ -124,11 +116,18 @@ public class Controlador {
         MovimientoDinero movimiento= new MovimientoDinero();
         model.addAttribute("mov",movimiento);
         model.addAttribute("mensaje",mensaje);
+      List<Empleado> listaEmpleados= empleadoService.getAllEmpleado();
+        model.addAttribute("emplelist", listaEmpleados);
+        return "agregarMovimiento";
+
+        /*
         Authentication auth= SecurityContextHolder.getContext().getAuthentication();
         String correo=auth.getName();
         Integer idEmpleado=movimientosService.IdPorCorreo(correo);
         model.addAttribute("idEmpleado",idEmpleado);
         return "agregarMovimiento"; //Llamar HTML
+
+         */
     }
 
     @PostMapping("/GuardarMovimiento")
@@ -252,8 +251,8 @@ public class Controlador {
         Integer id=empl.getId(); //Sacamos el id del objeto empl
         String Oldpass=empleadoService.getEmpleadoById(id).get().getPassword(); //Con ese id consultamos la contraseña que ya esta en la base
         if(!empl.getPassword().equals(Oldpass)){
-            String passEncriptada=passwordEncoder().encode(empl.getPassword());
-            empl.setPassword(passEncriptada);
+           // String passEncriptada=passwordEncoder().encode(empl.getPassword());
+           // empl.setPassword(passEncriptada);
         }
         if(empleadoService.saveOrUpdateEmpleado(empl)){
             redirectAttributes.addFlashAttribute("mensaje","updateOK");
@@ -282,8 +281,8 @@ public String verEmpleadosPorEmpresa(@PathVariable("id")Integer id, Model model)
 
 
     //Metodo para encriptar contraseñas
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
+   // @Bean
+   // public PasswordEncoder passwordEncoder(){
+      //  return new BCryptPasswordEncoder();
+  //  }
 }
