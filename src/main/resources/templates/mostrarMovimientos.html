@@ -52,7 +52,7 @@
         <th>ID</th>
         <th class="text-right">Valor</th>
         <th>Concepto</th>
-        <th>Usuario Responsable</th>
+        <th>Empresa Responsable</th>
         <th>Fecha del Movimiento</th>
         <th>Editar</th>
         <th>Eliminar</th>
@@ -71,7 +71,7 @@
         <td th:if="${movimiento.concepto=='6'}">Mobiliario</td>
         <td th:if="${movimiento.concepto=='7'}">Maquinaria y Equipo</td>
         <td th:if="${movimiento.concepto=='8'}">Nomina</td>
-        <td th:text="${movimiento.usuario.nombre}"></td>
+        <td th:text="${movimiento.empresa.nombre}"></td>
         <td th:text="${#dates.format(movimiento.fecha, 'dd/MM/yyyy')}"></td>
         <td><button type="button" class="btn btn-warning"><a th:href="@{/EditarMovimiento/{id}(id=${movimiento.id})}">Editar</a></button></td>
         <td><button type="button" class="btn btn-danger"><a th:href="@{/EliminarMovimiento/{id}(id=${movimiento.id})}">Eliminar</a></button></td>

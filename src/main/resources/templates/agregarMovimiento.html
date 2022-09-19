@@ -61,10 +61,10 @@
         <!--Campo para empleado (usuario responsable)-->
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3" for="usuario">Empleado responsable:</label>
+                <label class="col-md-3" for="empresa">Empresa responsable:</label>
                 <div class="col-md-6">
-                    <select th:field="*{usuario}" class="form-control" id="usuario" required="required" > //readonly
-                        <option th:text="${#httpServletRequest.remoteUser}" th:value="${idEmpleado}"></option>
+                    <select th:field="*{empresa}" class="form-control" id="empresa" required="required" > <!--readonly-->
+                        <option th:each="empresa : ${emprelist}" th:text="${empresa.nombre}" th:value="${empresa.id}"></option>
                     </select>
                 </div>
             </div>

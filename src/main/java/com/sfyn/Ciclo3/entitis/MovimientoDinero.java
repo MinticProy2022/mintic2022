@@ -15,8 +15,8 @@ public class MovimientoDinero {
     private long monto;
     private String concepto;
     @ManyToOne
-    @JoinColumn(name = "empleado_id")
-    private Empleado usuario;    //en lugar de usuario , se crea un odjeto de la clase empleado
+    @JoinColumn(name = "empresa_id")
+    private Empresa empresa;    //en lugar de usuario , se crea un odjeto de la clase empleado
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fecha;
 
@@ -26,11 +26,11 @@ public class MovimientoDinero {
     public MovimientoDinero() {
     }
 
-    public MovimientoDinero(int id, long monto, String concepto, Empleado usuario, Date fecha) {
+    public MovimientoDinero(int id, long monto, String concepto, Empresa empresa, Date fecha) {
         this.id = id;
         this.monto = monto;
         this.concepto = concepto;
-        this.usuario = usuario;
+        this.empresa = empresa;
         this.fecha = fecha;
     }
 
@@ -58,12 +58,12 @@ public class MovimientoDinero {
         this.concepto = concepto;
     }
 
-    public Empleado getUsuario() {
-        return usuario;
+    public Empresa getEmpresa() {
+        return empresa;
     }
 
-    public void setUsuario(Empleado usuario) {
-        this.usuario = usuario;
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
 
     public Date getFecha() {

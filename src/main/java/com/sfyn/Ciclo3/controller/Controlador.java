@@ -116,8 +116,8 @@ public class Controlador {
         MovimientoDinero movimiento= new MovimientoDinero();
         model.addAttribute("mov",movimiento);
         model.addAttribute("mensaje",mensaje);
-      List<Empleado> listaEmpleados= empleadoService.getAllEmpleado();
-        model.addAttribute("emplelist", listaEmpleados);
+        List<Empresa> listaEmpresas= empresaService.getAllEmpresas();
+        model.addAttribute("emprelist", listaEmpresas);
         return "agregarMovimiento";
 
         /*
