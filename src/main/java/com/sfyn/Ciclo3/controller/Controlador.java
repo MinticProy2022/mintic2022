@@ -5,13 +5,10 @@ import com.sfyn.Ciclo3.entitis.Empresa;
 import com.sfyn.Ciclo3.services.EmpleadoService;
 import com.sfyn.Ciclo3.services.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
-<<<<<<< HEAD
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
-=======
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
->>>>>>> d92868ba9c376027a7c4acb748982309ecb1442a
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -30,17 +27,14 @@ public class Controlador {
     @Autowired
     EmpleadoService empleadoService;
 
-<<<<<<< HEAD
     @GetMapping("/login")
     public String home(Model model, @AuthenticationPrincipal OidcUser principal) {
         return "login";
     }
-
-=======
+    
 
 //***************************************************************
     //***********controlador Empresa**********************************
->>>>>>> d92868ba9c376027a7c4acb748982309ecb1442a
     @GetMapping({"/", "/verEmpresas"})
     public String viewEmpresas(Model model, @ModelAttribute("mensaje")String mensaje) {
         List<Empresa> listaEmpresas = empresaService.getAllEmpresas();
