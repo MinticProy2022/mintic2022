@@ -11,6 +11,8 @@ import java.util.List;
 
 @Service
 public class  EmpresaService {
+
+
     @Autowired  //conectamos esta clase con el repositorio de empresa
 
     EmpresaRepository empresaRepository;  //creamos un objeto tipo empresaRepositorio para poder usar los metodos que dicha clase hereda

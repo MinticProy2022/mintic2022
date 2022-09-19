@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+  <title>Inicio de Sesion</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+<body>
+<div class="model-dialog text-center">
+  <div class="col-sm-8">
+    <div class="modal-contet">
+      <br>
+      <img src="/static/sfyn.jpg">
+    </div>
+    <br>
+    <form class="col-12">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Ingrese su usuario de empleado">
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" placeholder="Ingrese su contraseña de empleado">
+      </div>
+
+      <div sec:authorize="!isAuthenticated()">
+        <a th:href="@{/oauth2/authorization/auth0}" class="btn btn-primary btn-lg px-4 gap-3">Ingresar a la aplicación</a>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Registrase</button>
+    </form>
+    <div class="col-12">
+      <a href="#">Recordar mi Contraseña</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>
