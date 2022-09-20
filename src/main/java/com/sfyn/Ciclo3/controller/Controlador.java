@@ -99,13 +99,17 @@ public class Controlador {
     //************controlador Movimiento dinero*********************************
 
     @RequestMapping("/mostrarMovimientos")// Controlador que nos lleva al template donde veremos todos los movimientos
-    public String viewMovimientos(@RequestParam(value = "pagina", required = false, defaultValue = "1") int NumeroPagina,
-                                  @RequestParam(value = "medida", required = false, defaultValue = "5") int medida,
-                                  Model model, @ModelAttribute("mensaje") String mensaje) {
-        Page<MovimientoDinero> paginaMovimientos = movimientosRepository.findAll(PageRequest.of(NumeroPagina, medida));
+    public String viewMovimientos(Model model, @ModelAttribute("mensaje") String mensaje) {
+        List<MovimientoDinero> listaMovimientos = movimientosRepository.findAll();
+        /*
         model.addAttribute("movlist", paginaMovimientos.getContent());
         model.addAttribute("paginas", new int[paginaMovimientos.getTotalPages()]);
+
+
         model.addAttribute("paginaActual", NumeroPagina);
+
+         */
+        model.addAttribute("movlist", listaMovimientos);
         model.addAttribute("mensaje", mensaje);
         Long sumaMonto = movimientosService.obtenerSumaMontos();
         model.addAttribute("SumaMontos", sumaMonto);//Mandamos la suma de todos los montos a la plantilla
