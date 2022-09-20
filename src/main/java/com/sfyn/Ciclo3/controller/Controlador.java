@@ -31,7 +31,7 @@ public class Controlador {
     public String home(Model model, @AuthenticationPrincipal OidcUser principal) {
         return "login";
     }
-    
+
 
 //***************************************************************
     //***********controlador Empresa**********************************
