@@ -151,8 +151,8 @@ public class Controlador {
         //Creamos un atributo para el modelo, que se llame igualmente empl y es el que ira al html para llenar o alimentar campos
         model.addAttribute("mov", mov);
         model.addAttribute("mensaje", mensaje);
-        List<Empleado> listaEmpleados = empleadoService.getAllEmpleado();
-        model.addAttribute("emplelist", listaEmpleados);
+        List<Empresa> listaEmpresas =empresaService.getAllEmpresas();
+        model.addAttribute("emprelist", listaEmpresas);
         return "editarMovimiento";
     }
 
