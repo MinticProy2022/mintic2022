@@ -151,7 +151,7 @@ public class Controlador {
         //Creamos un atributo para el modelo, que se llame igualmente empl y es el que ira al html para llenar o alimentar campos
         model.addAttribute("mov", mov);
         model.addAttribute("mensaje", mensaje);
-        List<Empresa> listaEmpresas =empresaService.getAllEmpresas();
+        List<Empresa> listaEmpresas = empresaService.getAllEmpresas();
         model.addAttribute("emprelist", listaEmpresas);
         return "editarMovimiento";
     }
@@ -197,37 +197,36 @@ public class Controlador {
 
     //Controlador que me lleva al template de No autorizado
     //@RequestMapping(value="/Denegado")
-   // public String accesoDenegado(){
-     //   return "accessDenied";
+    // public String accesoDenegado(){
+    //   return "accessDenied";
     //}
-
-
-
 
 
     //***************************************************************************
     //**************controlador Empleado**************************************
-    @GetMapping({ "/verEmpleados"})
-    public String viewEmpleados(Model model, @ModelAttribute("mensaje")String mensaje) {
+    @GetMapping({"/verEmpleados"})
+    public String viewEmpleados(Model model, @ModelAttribute("mensaje") String mensaje) {
         List<Empleado> listaEmpleados = empleadoService.getAllEmpleado();
         model.addAttribute("emplelist", listaEmpleados);
         model.addAttribute("mensaje", mensaje);
         return "mostrarEmpleados";    //aqui llamamo al html el que esta en templates llamado mostrarEmpleado
 
     }
+
     //***********************agregar empleado************************************
     @GetMapping("/AgregarEmpleado") //esta es la ruta con la que se hace el llamado de este bloque en el host
-    public String nuevoEmpleado(Model model,@ModelAttribute("mensaje")String mensaje) {
+    public String nuevoEmpleado(Model model, @ModelAttribute("mensaje") String mensaje) {
         Empleado emple = new Empleado();
         model.addAttribute("empl", emple);
         model.addAttribute("mensaje", mensaje);
-        List<Empresa> listaEmpresa= empresaService.getAllEmpresas();
-        model.addAttribute("emprelist",listaEmpresa);
+        List<Empresa> listaEmpresa = empresaService.getAllEmpresas();
+        model.addAttribute("emprelist", listaEmpresa);
 
         return "agregarEmpleado";//aqui llamamos a el html AgregarEmpleado
 
     }
-//*****************Guardar empleado***************************
+
+    //*****************Guardar empleado***************************
     @PostMapping("/GuardarEmpleado")
     public String guardarEmpleado(Empleado emple, RedirectAttributes redirectAttributes) {
         if (empleadoService.saveOrUpdateEmpleado(emple) == true) {
@@ -239,55 +238,67 @@ public class Controlador {
         return "redirect:/AgregarEmpleado"; //aqui hace retorno a la lista de empresas pasando por el html
     }
 
-//**************************Editar*******************************************************
+    //**************************Editar*******************************************************
     @GetMapping("/EditarEmpleado/{id}")
-    public String editarEmpleado(Model model, @PathVariable Integer id, @ModelAttribute("mensaje") String mensaje){
-        Empleado empl=empleadoService.getEmpleadoById(id).get();
+    public String editarEmpleado(Model model, @PathVariable Integer id, @ModelAttribute("mensaje") String mensaje) {
+        Empleado empl = empleadoService.getEmpleadoById(id).get();
         //Creamos un atributo para el modelo, que se llame igualmente empl y es el que ira al html para llenar o alimentar campos
-        model.addAttribute("empl",empl);
+        model.addAttribute("empl", empl);
         model.addAttribute("mensaje", mensaje);
-        List<Empresa> listaEmpresas= empresaService.getAllEmpresas();
-        model.addAttribute("emprelist",listaEmpresas);
+        List<Empresa> listaEmpresas = empresaService.getAllEmpresas();
+        model.addAttribute("emprelist", listaEmpresas);
         return "editarEmpleado";
     }
 
     @PostMapping("/ActualizarEmpleado")
-    public String updateEmpleado(@ModelAttribute("empl") Empleado empl, RedirectAttributes redirectAttributes){
-        Integer id=empl.getId(); //Sacamos el id del objeto empl
-        String Oldpass=empleadoService.getEmpleadoById(id).get().getPassword(); //Con ese id consultamos la contraseña que ya esta en la base
-        if(!empl.getPassword().equals(Oldpass)){
-           // String passEncriptada=passwordEncoder().encode(empl.getPassword());
-           // empl.setPassword(passEncriptada);
+    public String updateEmpleado(@ModelAttribute("empl") Empleado empl, RedirectAttributes redirectAttributes) {
+        Integer id = empl.getId(); //Sacamos el id del objeto empl
+        String Oldpass = empleadoService.getEmpleadoById(id).get().getPassword(); //Con ese id consultamos la contraseña que ya esta en la base
+        if (!empl.getPassword().equals(Oldpass)) {
+            // String passEncriptada=passwordEncoder().encode(empl.getPassword());
+            // empl.setPassword(passEncriptada);
         }
-        if(empleadoService.saveOrUpdateEmpleado(empl)){
-            redirectAttributes.addFlashAttribute("mensaje","updateOK");
+        if (empleadoService.saveOrUpdateEmpleado(empl)) {
+            redirectAttributes.addFlashAttribute("mensaje", "updateOK");
             return "redirect:/verEmpleados";
         }
-        redirectAttributes.addFlashAttribute("mensaje","updateError");
-        return "redirect:/EditarEmpleado/"+empl.getId();
+        redirectAttributes.addFlashAttribute("mensaje", "updateError");
+        return "redirect:/EditarEmpleado/" + empl.getId();
 
     }
+
     //*********************Eliminar************************
     @GetMapping("/EliminarEmpleado/{id}")
-    public String eliminarEmpleado(@PathVariable Integer id, RedirectAttributes redirectAttributes){
-        if (empleadoService.deleteEmpleado(id)){
-            redirectAttributes.addFlashAttribute("mensaje","deleteOK");
+    public String eliminarEmpleado(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
+        if (empleadoService.deleteEmpleado(id)) {
+            redirectAttributes.addFlashAttribute("mensaje", "deleteOK");
             return "redirect:/verEmpleados";
         }
         redirectAttributes.addFlashAttribute("mensaje", "deleteError");
         return "redirect:/verEmpleados";
     }
+
     @GetMapping("/Empresa/{id}/Empleados")
-public String verEmpleadosPorEmpresa(@PathVariable("id")Integer id, Model model){
-        List<Empleado>listaEmpleados=empleadoService.obtenerPorEmpresa(id);
-        model.addAttribute("emplelist",listaEmpleados);
+    public String verEmpleadosPorEmpresa(@PathVariable("id") Integer id, Model model) {
+        List<Empleado> listaEmpleados = empleadoService.obtenerPorEmpresa(id);
+        model.addAttribute("emplelist", listaEmpleados);
         return "verEmpleados";
     }
 
 
     //Metodo para encriptar contraseñas
-   // @Bean
-   // public PasswordEncoder passwordEncoder(){
-      //  return new BCryptPasswordEncoder();
-  //  }
+    // @Bean
+    // public PasswordEncoder passwordEncoder(){
+    //  return new BCryptPasswordEncoder();
+    //  }
+
+    @GetMapping("/Empresa/{id}/AgregarMovimiento") //Controlador que nos lleva al template donde podremos crear un nuevo movimiento
+    public String nuevoMovimientoEmpresa(@PathVariable("id") Integer id, Model model, @ModelAttribute("mensaje") String mensaje) {
+        MovimientoDinero movimiento = new MovimientoDinero();
+        model.addAttribute("mov", movimiento);
+        model.addAttribute("mensaje", mensaje);
+        Empresa empresa = empresaService.getEmpresaById(id);
+        model.addAttribute("emprelist", empresa);
+        return "agregarMovimiento";
+    }
 }
