@@ -194,12 +194,12 @@ public class Controlador {
         model.addAttribute("SumaMontos", sumaMonto);
         return "mostrarMovimientos"; //Llamamos al HTML
     }
-}
+
     //Controlador que me lleva al template de No autorizado
-    /*@RequestMapping(value="/Denegado")
+    //@RequestMapping(value="/Denegado")
    // public String accesoDenegado(){
      //   return "accessDenied";
-    }
+    //}
 
 
 
@@ -290,4 +290,4 @@ public String verEmpleadosPorEmpresa(@PathVariable("id")Integer id, Model model)
    // public PasswordEncoder passwordEncoder(){
       //  return new BCryptPasswordEncoder();
   //  }
-*/
+}
