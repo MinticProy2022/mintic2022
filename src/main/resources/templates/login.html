@@ -14,7 +14,7 @@
             <img src="/static/sfyn.jpg">
         </div>
         <br>
-        <form class="col-12">
+         <form class="col-12">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Ingrese su usuario de empleado">
             </div>
@@ -27,11 +27,12 @@
             </div>
 
             <div sec:authorize="isAuthenticated()">
-                <a th:href="@{/verEmpleados}" class="btn btn-primary btn-lg px-4 gap-3">Ingresar a la aplicación</a>
+                <a th:href="@{/verEmpleados}" class="btn btn-primary btn-lg px-4 gap-3">Bienvenido, Click para continuar</a>
             </div>
 
 
             <button type="submit" class="btn btn-primary">Registrase</button>
+
         </form>
         <div class="col-12">
             <a href="#">Recordar mi Contraseña</a>
