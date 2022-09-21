@@ -3,10 +3,12 @@ package com.sfyn.Ciclo3.controller;
 import com.sfyn.Ciclo3.entitis.Empleado;
 import com.sfyn.Ciclo3.entitis.Empresa;
 import com.sfyn.Ciclo3.entitis.MovimientoDinero;
+import com.sfyn.Ciclo3.entitis.User;
 import com.sfyn.Ciclo3.repositorio.MovimientosRepository;
 import com.sfyn.Ciclo3.services.EmpleadoService;
 import com.sfyn.Ciclo3.services.EmpresaService;
 import com.sfyn.Ciclo3.services.MovimientosService;
+import com.sfyn.Ciclo3.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -34,10 +36,18 @@ public class Controlador {
     @Autowired
     MovimientosService movimientosService;
 
+    @Autowired
+    UserService userService;
+
     //***************************************************************
     //***********controlador login**********************************
     @GetMapping("/")
     public String login(Model model, @AuthenticationPrincipal OidcUser principal){
+        if(principal != null) {
+            System.out.println(principal.getClaims());
+            User user = userService.getOrCreateUser(principal.getClaims());
+            model.addAttribute("user", user);
+        }
         return "login";
     }
 
