@@ -20,14 +20,14 @@ import java.util.List;
 //@RestController
 @Service
 @Controller
-@RequestMapping("/sfyn")
+//@RequestMapping("/sfyn")
 public class Controlador {
     @Autowired
     EmpresaService empresaService;
     @Autowired
     EmpleadoService empleadoService;
 
-    @GetMapping("/login")
+    @GetMapping("/")
     public String home(Model model, @AuthenticationPrincipal OidcUser principal) {
         return "login";
     }
@@ -35,7 +35,7 @@ public class Controlador {
 
 //***************************************************************
     //***********controlador Empresa**********************************
-    @GetMapping({"/", "/verEmpresas"})
+    @GetMapping("/verEmpresas")
     public String viewEmpresas(Model model, @ModelAttribute("mensaje")String mensaje) {
         List<Empresa> listaEmpresas = empresaService.getAllEmpresas();
         model.addAttribute("emplist", listaEmpresas);
@@ -104,7 +104,7 @@ public class Controlador {
 
     //***************************************************************************
     //**************controlador Empleado**************************************
-    @GetMapping({ "/verEmpleados"})
+    @GetMapping( "/verEmpleados")
     public String viewEmpleados(Model model, @ModelAttribute("mensaje")String mensaje) {
         List<Empleado> listaEmpleados = empleadoService.getAllEmpleado();
         model.addAttribute("emplelist", listaEmpleados);
