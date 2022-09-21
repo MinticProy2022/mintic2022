@@ -10,6 +10,8 @@ import com.sfyn.Ciclo3.services.MovimientosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -33,8 +35,15 @@ public class Controlador {
     MovimientosService movimientosService;
 
     //***************************************************************
+    //***********controlador del Login**********************************
+    @GetMapping("/")
+    public String home(Model model, @AuthenticationPrincipal OidcUser principal) {
+        return "login";
+    }
+
+    //***************************************************************
     //***********controlador Empresa**********************************
-    @GetMapping({"/", "/verEmpresas"})
+    @GetMapping("/verEmpresas")
     public String viewEmpresas(Model model, @ModelAttribute("mensaje") String mensaje) {
         List<Empresa> listaEmpresas = empresaService.getAllEmpresas();
         model.addAttribute("emplist", listaEmpresas);
@@ -204,7 +213,7 @@ public class Controlador {
 
     //***************************************************************************
     //**************controlador Empleado**************************************
-    @GetMapping({"/verEmpleados"})
+    @GetMapping("/verEmpleados")
     public String viewEmpleados(Model model, @ModelAttribute("mensaje") String mensaje) {
         List<Empleado> listaEmpleados = empleadoService.getAllEmpleado();
         model.addAttribute("emplelist", listaEmpleados);
