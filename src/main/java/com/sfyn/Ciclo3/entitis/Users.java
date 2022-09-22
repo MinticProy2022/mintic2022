@@ -7,8 +7,8 @@ import javax.persistence.*;
 public class Users {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+   // @GeneratedValue(strategy = GenerationType.AUTO)
+    private String auth0Id;
 
     @Column(name = "email")
     private  String email;
@@ -16,8 +16,8 @@ public class Users {
     @Column(name = "image", unique = true)
     private  String image;
 
-    @Column(name = "auth0Id", unique = true)
-    private  String auth0Id;
+   // @Column(name = "auth0Id")
+    //private  String auth0Id;
 
     public Users() {
     }
@@ -28,13 +28,13 @@ public class Users {
         this.auth0Id = auth0Id;
     }
 
-    public int getId() {
-        return id;
-    }
+   // public int getId() {
+    //    return id;
+  //  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+   // public void setId(int id) {
+     //   this.id = id;
+   // }
 
     public String getEmail() {
         return email;

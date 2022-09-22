@@ -5,6 +5,7 @@ import com.sfyn.Ciclo3.repositorio.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class UsersService {
@@ -21,13 +22,18 @@ public class UsersService {
 
    public Users ingresarOrCrearUsuario(Map<String, Object> userData){
 
-        String email = (String) userData.get("email");
-        String name = (String) userData.get("nickname");
-        String image = (String) userData.get("picture");
-        String auth0Id = (String) userData.get("sub");
+       String auth0Id = (String) userData.get("sub");
+       String email = (String) userData.get("email");
+       String name = (String) userData.get("nickname");
+       String image = (String) userData.get("picture");
 
-        Users newUser = new Users(email=email, image=image, auth0Id=auth0Id);
-        return crearUsers(newUser);
+       Optional<Users> users = userRepository.findById(auth0Id);
+
+         if(users.isEmpty()){
+            Users newUser = new Users(email=email, image=image, auth0Id=auth0Id);
+            return crearUsers(newUser);
+        }
+        return users.get();
    }
 
 }
