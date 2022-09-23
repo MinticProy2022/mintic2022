@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <title>Inicio de Sesion</title>
-    <meta charset="UTF-8">
+    <title>Login</title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 
 </head>
 <body>
-
-<div class="model-dialog text-center">
-    <div class="col-sm-8">
-        <form>
-            <div>
-            <img  src="https://images.app.goo.gl/BB2i2xrYdQT49R7X8">
-            </div>
+<main>
+    <div class="px-4 py-5 my-5 text-center">
+        <img src="https://blog.prodware.es/wp-content/uploads/2019/10/4-soluciones-cloud-para-empresas-cabecera-1024x683.jpg" class="img-rounded" alt="" width="720" height="236">
+        <h1 class="display-5 fw-bold">Sistema de gestión</h1>
+        <div class="col-lg-6 mx-auto">
             <div sec:authorize="!isAuthenticated()">
-                <a th:href="@{/oauth2/authorization/auth0}" class="btn btn-primary btn-lg px-4 gap-3">Iniciar sesion</a>
+                <a th:href="@{/oauth2/authorization/auth0}" class="btn btn-primary btn-lg px-4 gap-3">Inicia Sesión</a>
             </div>
-
             <div sec:authorize="isAuthenticated()">
-                <a th:href="@{/verEmpleados}" class="btn btn-primary btn-lg px-4 gap-3">Bienvenido, Click para continuar</a>
+                <h3 th:text="'Bienvenido, ' + ${user.getEmail()}"></h3>
+                <a th:href="@{/verEmpresas}" class="btn btn-primary btn-lg px-4 gap-3">Ingresar a la aplicación</a>
             </div>
-        </form>
+        </div>
     </div>
-</div>
+</main>
 </body>
 </html>
