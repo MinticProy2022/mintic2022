@@ -48,6 +48,7 @@ public class Controlador {
 
         if(principal != null) {
            Users users = this.usersService.ingresarOrCrearUsuario(principal.getClaims());
+           model.addAttribute("user", users);
         }
 
         return "login";
