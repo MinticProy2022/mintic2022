@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <title>Lista de Empresas - SFYN</title>
     <meta charset="utf-8">
@@ -16,6 +16,10 @@
 <body>
 
 <div class="container">
+
+    <div sec:authorize="isAuthenticated()">
+        <a th:href="@{/logout}" class="btn btn-danger" style="float:right">Log Out</a>
+    </div>
 
 
     <h1 >Lista de Empresas - SFYN</h1>
